@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.virtualpairprogrammers.data.MenuDataService;
 
@@ -14,7 +15,7 @@ public class OrderReceivedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MenuDataService menuDataService = new MenuDataService();
 	
-	public void service (HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		int maxId = menuDataService.getFullMenu().size();
 		for (int i = 0; i <maxId; i++) {
@@ -33,14 +34,9 @@ public class OrderReceivedServlet extends HttpServlet {
 		
 		Double total = menuDataService.getOrderTotal();
 		
-		PrintWriter out = response.getWriter();
-		response.setContentType("text/html");
-		out.println("<html><body><h1>Ricky's Restaurant</h1>");
-		out.println("<h2>Order your food</h2>");
+		HttpSession session = request.getSession();
+		session.setAttribute("total", total);
 		
-		out.println("Thank you - your order has been received. You need to pay $" + total);
-				
-		out.println("</body></html>");
-		out.close();
+		response.sendRedirect("thankYou.html");
 	}
 }
