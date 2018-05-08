@@ -8,6 +8,21 @@
 	<packaging>war</packaging>
 	<name>Ricky's Restaurant</name>
 	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				
+				<configuration>
+					<outputDirectory>${basedir}/../../apache-tomcat-9.0.5/webapps</outputDirectory>
+					<warName>restaurant</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<dependencies>
 	
 		<dependency>
