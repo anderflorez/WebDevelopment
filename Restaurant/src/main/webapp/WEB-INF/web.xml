@@ -14,10 +14,19 @@
     	<servlet-class>com.virtualpairprogrammers.servlets.HelloWorldServlet</servlet-class>
     </servlet>
     
+    <servlet>
+    	<servlet-name>ViewMenuServlet</servlet-name>
+    	<servlet-class>com.virtualpairprogrammers.servlets.ViewMenuServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
     	<servlet-name>HelloWorldServlet</servlet-name>
     	<url-pattern>/hello.html</url-pattern>
     </servlet-mapping>
-
+    
+    <servlet-mapping>
+    	<servlet-name>ViewMenuServlet</servlet-name>
+    	<url-pattern></url-pattern>
+    </servlet-mapping>
 
 </web-app> 
