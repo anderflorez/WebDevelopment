@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.virtualpairprogrammers.data.MenuDataService;
 import com.virtualpairprogrammers.domain.MenuItem;
 
-public class ViewMenuServlet extends HttpServlet {
+public class OrderServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,19 +19,18 @@ public class ViewMenuServlet extends HttpServlet {
 		
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
-		
+				
+		out.println("<html><body><h1>Ricky's Restaurant</h1>");
+		out.println("<h2>Order your food</h2>");
+		out.println("<form action='orderReceived.html' method='POST' ><ul>");
+
 		MenuDataService menuDataService = new MenuDataService();
 		List<MenuItem> menuItems = menuDataService.getFullMenu();
-		
-		out.println("<html><body><h1>Ricky's Restaurant</h1>");
-		out.println("<h2>Menu</h2><ul>");
 		for (MenuItem menuItem : menuItems) {
-			out.println("<li>" + menuItem + "</li>");
+			out.println("<li>" + menuItem + "<input type='text' name='item_" + (menuItem.getId() - 1) + "' /></li>");			
 		}
-		out.println("</ul>");
-		out.println("<a href='searchResults.html?searchTerm=chicken'>View all of our chicken dishes</a>");
+		out.println("</ul><input type='submit' /></form>");
 		out.println("</body></html>");
 		out.close();
 	}
-
 }
