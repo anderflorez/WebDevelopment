@@ -18,7 +18,7 @@ public class ThankyouServlet extends HttpServlet {
 		Double total = (Double) session.getAttribute("total");
 		
 		if (total == null) {
-			response.sendRedirect("/restaurant/order");
+			response.sendRedirect("/restaurant/order.html");
 			return;
 		}
 		

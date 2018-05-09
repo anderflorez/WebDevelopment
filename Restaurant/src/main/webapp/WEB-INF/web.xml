@@ -56,7 +56,7 @@
     
 	<servlet-mapping>
     	<servlet-name>OrderServlet</servlet-name>
-    	<url-pattern>/order</url-pattern>
+    	<url-pattern>/order.html</url-pattern>
     </servlet-mapping>
     
 	<servlet-mapping>
@@ -72,5 +72,41 @@
     <session-config>
     	<session-timeout>120</session-timeout>
     </session-config>
+    
+    <security-role>
+    	<role-name>user</role-name>
+    </security-role>
+    
+    <security-role>
+    	<role-name>admin</role-name>
+    </security-role>
+    
+    <security-constraint>
+    	<web-resource-collection>
+    		<web-resource-name>order pages</web-resource-name>
+    		<url-pattern>/order.html</url-pattern>
+    		<url-pattern>/thankYou.html</url-pattern>
+    	</web-resource-collection>
+    	
+    	<auth-constraint>
+    		<role-name>user</role-name>
+    	</auth-constraint>
+    </security-constraint>
+    
+    <security-constraint>
+    	<web-resource-collection>
+    		<web-resource-name>staff pages</web-resource-name>
+    		<url-pattern>/admin/*</url-pattern>
+    	</web-resource-collection>
+    	
+    	<auth-constraint>
+    		<role-name>admin</role-name>
+    	</auth-constraint>
+    </security-constraint>
+    
+    <login-config>
+    	<auth-method>BASIC</auth-method>
+    	<realm-name>Ricky's Restaurant</realm-name>
+    </login-config>
 
 </web-app> 
